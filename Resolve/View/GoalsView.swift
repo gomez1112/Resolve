@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GoalsView: View {
+    static let openTag: String? = "Open"
+    static let closedTag: String? = "Closed"
     let showClosedGoals: Bool
     let goals: FetchRequest<Goal>
     init(showClosedGoals: Bool) {
