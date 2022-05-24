@@ -19,8 +19,8 @@ struct GoalsView: View {
             List {
                 ForEach(goals.wrappedValue) { goal in
                     Section(header: Text(goal.title ?? "")) {
-                        ForEach(goal.items?.allObjects as? [Item] ?? []) { item in
-                            Text(item.title ?? "")
+                        ForEach(goal.goalItems) { item in
+                            Text(item.itemTitle)
                         }
                     }
                 }

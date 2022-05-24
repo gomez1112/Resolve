@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC8C6D31283C627800D03D92 /* Item+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C6D30283C627800D03D92 /* Item+Extension.swift */; };
+		CC8C6D33283C632400D03D92 /* Goal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C6D32283C632400D03D92 /* Goal+Extension.swift */; };
 		CCBF1C72283B280F003476B2 /* ResolveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF1C71283B280F003476B2 /* ResolveApp.swift */; };
 		CCBF1C74283B280F003476B2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF1C73283B280F003476B2 /* ContentView.swift */; };
 		CCBF1C76283B2810003476B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBF1C75283B2810003476B2 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC8C6D30283C627800D03D92 /* Item+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Extension.swift"; sourceTree = "<group>"; };
+		CC8C6D32283C632400D03D92 /* Goal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+Extension.swift"; sourceTree = "<group>"; };
 		CCBF1C6E283B280F003476B2 /* Resolve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Resolve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBF1C71283B280F003476B2 /* ResolveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveApp.swift; sourceTree = "<group>"; };
 		CCBF1C73283B280F003476B2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC8C6D2F283C626C00D03D92 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CC8C6D30283C627800D03D92 /* Item+Extension.swift */,
+				CC8C6D32283C632400D03D92 /* Goal+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		CCBF1C65283B280F003476B2 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +81,7 @@
 				CCBF1C87283B2F6D003476B2 /* Info.plist */,
 				CCBF1C86283B2F5A003476B2 /* Resolve.entitlements */,
 				CCBF1C71283B280F003476B2 /* ResolveApp.swift */,
+				CC8C6D2F283C626C00D03D92 /* Extension */,
 				CCBF1C8B283B3081003476B2 /* View */,
 				CCBF1C82283B2A1D003476B2 /* Model */,
 				CCBF1C75283B2810003476B2 /* Assets.xcassets */,
@@ -190,6 +204,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBF1C81283B2864003476B2 /* Main.xcdatamodeld in Sources */,
+				CC8C6D31283C627800D03D92 /* Item+Extension.swift in Sources */,
+				CC8C6D33283C632400D03D92 /* Goal+Extension.swift in Sources */,
 				CCBF1C85283B2A34003476B2 /* DataController.swift in Sources */,
 				CCBF1C74283B280F003476B2 /* ContentView.swift in Sources */,
 				CCBF1C8F283B30DA003476B2 /* GoalsView.swift in Sources */,
