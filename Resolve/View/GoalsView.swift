@@ -22,7 +22,7 @@ struct GoalsView: View {
                 ForEach(goals.wrappedValue) { goal in
                     Section(header: Text(goal.title ?? "")) {
                         ForEach(goal.goalItems) { item in
-                            Text(item.itemTitle)
+                            ItemRowView(item: item)
                         }
                     }
                 }
