@@ -23,7 +23,7 @@ struct ResolveApp: App {
         }
     }
     
-    func save(_ note: Notification) {
+    private func save(_ note: Notification) {
         dataController.save()
     }
 }

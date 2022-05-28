@@ -44,7 +44,7 @@ struct EditItemView: View {
         .onDisappear(perform: dataController.save)
     }
     
-    func update() {
+    private func update() {
         item.goal?.objectWillChange.send()
         item.title = title
         item.detail = detail
@@ -54,7 +54,9 @@ struct EditItemView: View {
 }
 
 struct EditItemView_Previews: PreviewProvider {
+    static var dataController = DataController.preview
     static var previews: some View {
         EditItemView(item: Item.example)
+            .environmentObject(dataController)
     }
 }

@@ -32,7 +32,26 @@ extension Goal {
         return goal
     }
     
+    func goalItems<Value: Comparable>(sortedBy keyPath: KeyPath<Item, Value>) -> [Item] {
+        goalItems.sorted {
+            $0[keyPath: keyPath] < $1[keyPath: keyPath]
+        }
+    }
+    func goalItems(using sortOrder: Item.SortOrder) -> [Item] {
+        switch sortOrder {
+            case .optimized:
+                return goalItemsDefaultSorted
+            case .title:
+                return goalItems(sortedBy: \Item.itemTitle)
+            case .creationDate:
+                return goalItems(sortedBy: \Item.itemCreationDate )
+        }
+    }
     var goalItems: [Item] {
+        items?.allObjects as? [Item] ?? []
+    }
+    
+    var goalItemsDefaultSorted: [Item] {
         let itemsArray = items?.allObjects as? [Item] ?? []
         return itemsArray.sorted { first, second in
             if !first.completed {
@@ -60,4 +79,6 @@ extension Goal {
         let completedItems = originalItems.filter(\.completed)
         return Double(completedItems.count) / Double(originalItems.count)
     }
+    
+    static let colors = ["Pink", "Purple", "Red", "Orange", "Gold", "Green", "Teal", "Light Blue", "Dark Blue", "Midnight", "Dark Gray", "Gray"]
 }

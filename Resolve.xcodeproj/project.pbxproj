@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC7C75EE284260D5002028A6 /* Sequence+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75ED284260D5002028A6 /* Sequence+Extension.swift */; };
+		CC7C75F028426841002028A6 /* SelectSomethingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75EF28426841002028A6 /* SelectSomethingView.swift */; };
+		CC7C75F228426A69002028A6 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75F128426A69002028A6 /* Bundle+Extension.swift */; };
+		CC7C75F428426B05002028A6 /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = CC7C75F328426B05002028A6 /* Awards.json */; };
+		CC7C75F828426B7B002028A6 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75F728426B7B002028A6 /* Award.swift */; };
+		CC7C75FB28426C3B002028A6 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75FA28426C3B002028A6 /* AwardsView.swift */; };
+		CC7C75FD284272A3002028A6 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75FC284272A3002028A6 /* Color+Extension.swift */; };
+		CC8A75002840709B00DA16DC /* GoalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A74FF2840709B00DA16DC /* GoalHeaderView.swift */; };
+		CC8A7502284072D500DA16DC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC8A7501284072D500DA16DC /* Colors.xcassets */; };
+		CC8A7506284073E600DA16DC /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A7505284073E600DA16DC /* EditGoalView.swift */; };
 		CC8C6D31283C627800D03D92 /* Item+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C6D30283C627800D03D92 /* Item+Extension.swift */; };
 		CC8C6D33283C632400D03D92 /* Goal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C6D32283C632400D03D92 /* Goal+Extension.swift */; };
 		CCA3411E283F0DAD0021BC45 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA3411D283F0DAD0021BC45 /* EditItemView.swift */; };
@@ -24,6 +34,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC7C75ED284260D5002028A6 /* Sequence+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extension.swift"; sourceTree = "<group>"; };
+		CC7C75EF28426841002028A6 /* SelectSomethingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSomethingView.swift; sourceTree = "<group>"; };
+		CC7C75F128426A69002028A6 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		CC7C75F328426B05002028A6 /* Awards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Awards.json; sourceTree = "<group>"; };
+		CC7C75F728426B7B002028A6 /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
+		CC7C75FA28426C3B002028A6 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
+		CC7C75FC284272A3002028A6 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		CC8A74FF2840709B00DA16DC /* GoalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalHeaderView.swift; sourceTree = "<group>"; };
+		CC8A7501284072D500DA16DC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		CC8A7505284073E600DA16DC /* EditGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
 		CC8C6D30283C627800D03D92 /* Item+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Extension.swift"; sourceTree = "<group>"; };
 		CC8C6D32283C632400D03D92 /* Goal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+Extension.swift"; sourceTree = "<group>"; };
 		CCA3411D283F0DAD0021BC45 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
@@ -55,10 +75,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC7C75F928426C2E002028A6 /* Award */ = {
+			isa = PBXGroup;
+			children = (
+				CC7C75FA28426C3B002028A6 /* AwardsView.swift */,
+			);
+			path = Award;
+			sourceTree = "<group>";
+		};
+		CC8A7503284073AE00DA16DC /* GoalView */ = {
+			isa = PBXGroup;
+			children = (
+				CC8A74FF2840709B00DA16DC /* GoalHeaderView.swift */,
+				CC8A7505284073E600DA16DC /* EditGoalView.swift */,
+				CCBF1C8E283B30DA003476B2 /* GoalsView.swift */,
+			);
+			path = GoalView;
+			sourceTree = "<group>";
+		};
+		CC8A7504284073BD00DA16DC /* ItemView */ = {
+			isa = PBXGroup;
+			children = (
+				CCA3411D283F0DAD0021BC45 /* EditItemView.swift */,
+				CCA3411F283F106B0021BC45 /* ItemRowView.swift */,
+			);
+			path = ItemView;
+			sourceTree = "<group>";
+		};
 		CC8C6D2F283C626C00D03D92 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				CC8C6D30283C627800D03D92 /* Item+Extension.swift */,
+				CC7C75FC284272A3002028A6 /* Color+Extension.swift */,
+				CC7C75F128426A69002028A6 /* Bundle+Extension.swift */,
+				CC7C75ED284260D5002028A6 /* Sequence+Extension.swift */,
 				CC8C6D32283C632400D03D92 /* Goal+Extension.swift */,
 				CCA34121283F11BF0021BC45 /* Binding+Extension.swift */,
 			);
@@ -88,10 +138,12 @@
 				CCBF1C87283B2F6D003476B2 /* Info.plist */,
 				CCBF1C86283B2F5A003476B2 /* Resolve.entitlements */,
 				CCBF1C71283B280F003476B2 /* ResolveApp.swift */,
+				CC7C75F328426B05002028A6 /* Awards.json */,
 				CC8C6D2F283C626C00D03D92 /* Extension */,
 				CCBF1C8B283B3081003476B2 /* View */,
 				CCBF1C82283B2A1D003476B2 /* Model */,
 				CCBF1C75283B2810003476B2 /* Assets.xcassets */,
+				CC8A7501284072D500DA16DC /* Colors.xcassets */,
 				CCBF1C77283B2810003476B2 /* Preview Content */,
 			);
 			path = Resolve;
@@ -108,6 +160,7 @@
 		CCBF1C82283B2A1D003476B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CC7C75F728426B7B002028A6 /* Award.swift */,
 				CCBF1C83283B2A23003476B2 /* CoreData */,
 			);
 			path = Model;
@@ -134,10 +187,11 @@
 			isa = PBXGroup;
 			children = (
 				CCBF1C73283B280F003476B2 /* ContentView.swift */,
-				CCA3411D283F0DAD0021BC45 /* EditItemView.swift */,
 				CCBF1C8C283B308B003476B2 /* HomeView.swift */,
-				CCBF1C8E283B30DA003476B2 /* GoalsView.swift */,
-				CCA3411F283F106B0021BC45 /* ItemRowView.swift */,
+				CC7C75F928426C2E002028A6 /* Award */,
+				CC8A7504284073BD00DA16DC /* ItemView */,
+				CC8A7503284073AE00DA16DC /* GoalView */,
+				CC7C75EF28426841002028A6 /* SelectSomethingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +254,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8A7502284072D500DA16DC /* Colors.xcassets in Resources */,
+				CC7C75F428426B05002028A6 /* Awards.json in Resources */,
 				CCBF1C79283B2810003476B2 /* Preview Assets.xcassets in Resources */,
 				CCBF1C76283B2810003476B2 /* Assets.xcassets in Resources */,
 			);
@@ -214,11 +270,19 @@
 			files = (
 				CCBF1C81283B2864003476B2 /* Main.xcdatamodeld in Sources */,
 				CC8C6D31283C627800D03D92 /* Item+Extension.swift in Sources */,
+				CC7C75FB28426C3B002028A6 /* AwardsView.swift in Sources */,
+				CC8A75002840709B00DA16DC /* GoalHeaderView.swift in Sources */,
+				CC7C75F228426A69002028A6 /* Bundle+Extension.swift in Sources */,
 				CC8C6D33283C632400D03D92 /* Goal+Extension.swift in Sources */,
+				CC7C75EE284260D5002028A6 /* Sequence+Extension.swift in Sources */,
 				CCBF1C85283B2A34003476B2 /* DataController.swift in Sources */,
+				CC7C75F828426B7B002028A6 /* Award.swift in Sources */,
+				CC7C75FD284272A3002028A6 /* Color+Extension.swift in Sources */,
+				CC7C75F028426841002028A6 /* SelectSomethingView.swift in Sources */,
 				CCA34120283F106B0021BC45 /* ItemRowView.swift in Sources */,
 				CCBF1C74283B280F003476B2 /* ContentView.swift in Sources */,
 				CCA34122283F11BF0021BC45 /* Binding+Extension.swift in Sources */,
+				CC8A7506284073E600DA16DC /* EditGoalView.swift in Sources */,
 				CCBF1C8F283B30DA003476B2 /* GoalsView.swift in Sources */,
 				CCBF1C8D283B308B003476B2 /* HomeView.swift in Sources */,
 				CCBF1C72283B280F003476B2 /* ResolveApp.swift in Sources */,

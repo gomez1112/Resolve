@@ -23,7 +23,7 @@ class DataController: ObservableObject {
             }
         }
     }
-    func createSampleData() throws {
+    private func createSampleData() throws {
         let viewContext = container.viewContext
         for i in 1...5 {
             let goal = Goal(context: viewContext)
@@ -72,6 +72,27 @@ class DataController: ObservableObject {
         let fetchRequest2: NSFetchRequest<NSFetchRequestResult> = Goal.fetchRequest()
         let batchDeleteRequest2 = NSBatchDeleteRequest(fetchRequest: fetchRequest2)
         _ = try? container.viewContext.execute(batchDeleteRequest2)
+    }
+    
+    private func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+        (try? container.viewContext.count(for: fetchRequest)) ?? 0
+    }
+    
+    func hasEarned(award: Award) -> Bool {
+        switch award.criterion {
+            case "items":
+                let fetchRequest: NSFetchRequest<Item> = NSFetchRequest(entityName: "Item")
+                let awardCount = count(for: fetchRequest)
+                return awardCount >= award.value
+            case "complete":
+                let fetchRequest: NSFetchRequest<Item> = NSFetchRequest(entityName: "Item")
+                fetchRequest.predicate = NSPredicate(format: "completed = true")
+                let awardCount = count(for: fetchRequest)
+                return awardCount >= award.value
+                
+            default:
+                return false
+        }
     }
 }
 
