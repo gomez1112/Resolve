@@ -28,63 +28,13 @@ struct GoalsView: View {
                     Text("There's nothing here right now.")
                         .foregroundColor(.secondary)
                 } else {
-                    List {
-                        ForEach(goals.wrappedValue) { goal in
-                            Section(header: GoalHeaderView(goal: goal)) {
-                                ForEach(goal.goalItems(using: sortOrder)) { item in
-                                    ItemRowView(goal: goal, item: item)
-                                }
-                                .onDelete { offsets in
-                                    let allItems = goal.goalItems(using: sortOrder)
-                                    for offset in offsets {
-                                        let item = allItems[offset]
-                                        dataController.delete(item)
-                                    }
-                                    dataController.save()
-                                }
-                                
-                                if !showClosedGoals {
-                                    Button {
-                                        withAnimation {
-                                            let item = Item(context: managedObjectContext)
-                                            item.goal = goal
-                                            item.creationDate = Date()
-                                            dataController.save()
-                                        }
-                                    } label: {
-                                        Label("Add New Item", systemImage: "plus")
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .listStyle(.insetGrouped)
+                    goalsList
                 }
             }
             .navigationTitle(showClosedGoals ? "Closed Goals" : "Open Goals")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    if !showClosedGoals {
-                        Button {
-                            withAnimation {
-                                let goal = Goal(context: managedObjectContext)
-                                goal.closed = false
-                                goal.creationDate = Date()
-                                dataController.save()
-                            }
-                        } label: {
-                            Label("Add Goal", systemImage: "plus")
-                        }
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        showingSortOrder.toggle()
-                    } label: {
-                        Label("Sort", systemImage: "arrow.up.arrow.down")
-                    }
-                }
+                addGoalToolbarItem
+                sortOrderToolbarItem
             }
             .confirmationDialog("Sort items", isPresented: $showingSortOrder) {
                 Button("Optimized") { sortOrder = .optimized }
@@ -92,6 +42,86 @@ struct GoalsView: View {
                 Button("Title") { sortOrder = .title }
             }
             SelectSomethingView()
+        }
+    }
+    
+    var goalsList: some View {
+        List {
+            ForEach(goals.wrappedValue) { goal in
+                Section(header: GoalHeaderView(goal: goal)) {
+                    ForEach(goal.goalItems(using: sortOrder)) { item in
+                        ItemRowView(goal: goal, item: item)
+                    }
+                    .onDelete { offsets in
+                        delete(offsets, from: goal)
+                    }
+                    
+                    if !showClosedGoals {
+                        Button {
+                            addItem(to: goal)
+                        } label: {
+                            Label("Add New Item", systemImage: "plus")
+                        }
+                        .accessibilityLabel("Add goal")
+                    }
+                }
+                .accessibilityElement(children: .combine)
+            }
+        }
+        .listStyle(.insetGrouped)
+    }
+    private var addGoalToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            if !showClosedGoals {
+                Button(action: addGoal) {
+                    // In iOS 14.3 VoiceOver has a glitch that reads the label
+                    // "Add Project" as "Add" no matter what accessibility label
+                    // we give this button when using a label. As a result, when
+                    // VoiceOver is running we use a text view for the button instead,
+                    // forcing a correct reading without losing the original layout.
+                    if UIAccessibility.isVoiceOverRunning {
+                        Text("Add Goal")
+                    } else {
+                        Label("Add Goal", systemImage: "plus")
+                    }
+                }
+            }
+        }
+    }
+    
+    private var sortOrderToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button {
+                showingSortOrder.toggle()
+            } label: {
+                Label("Sort", systemImage: "arrow.up.arrow.down")
+            }
+        }
+    }
+    private func addItem(to goal: Goal) {
+        withAnimation {
+            let item = Item(context: managedObjectContext)
+            item.goal = goal
+            item.creationDate = Date()
+            dataController.save()
+        }
+    }
+    
+    private func delete(_ offsets: IndexSet, from goal: Goal) {
+        let allItems = goal.goalItems(using: sortOrder)
+        for offset in offsets {
+            let item = allItems[offset]
+            dataController.delete(item)
+        }
+        dataController.save()
+    }
+    
+    private func addGoal() {
+        withAnimation {
+            let goal = Goal(context: managedObjectContext)
+            goal.closed = false
+            goal.creationDate = Date()
+            dataController.save()
         }
     }
 }

@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Goal {
     var goalTitle: String {
-        title ?? "New Project"
+        title ?? NSLocalizedString("New Goal", comment: "Create a new goal")
     }
     
     var goalDetail: String {
@@ -30,6 +31,10 @@ extension Goal {
         goal.closed = true
         goal.creationDate = Date()
         return goal
+    }
+    
+    var label: LocalizedStringKey {
+        LocalizedStringKey("\(goalTitle), \(goalItems.count) items, \(completionAmount * 100, specifier: "%g")% complete.")
     }
     
     func goalItems<Value: Comparable>(sortedBy keyPath: KeyPath<Item, Value>) -> [Item] {

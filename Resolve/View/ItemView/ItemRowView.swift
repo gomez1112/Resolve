@@ -18,6 +18,7 @@ struct ItemRowView: View {
             } icon: {
                 icon
             }
+            .accessibilityLabel(label)
         }
     }
     
@@ -26,11 +27,27 @@ struct ItemRowView: View {
             return Image(systemName: "checkmark.circle")
                 .foregroundColor(Color(goal.goalColor))
         } else if item.priority == 3 {
-            return Image(systemName: "exclamationmark.triangle")
+            return Image(systemName: "exclamationmark.3")
+                .foregroundColor(Color(goal.goalColor))
+        } else if item.priority == 2 {
+            return Image(systemName: "exclamationmark.2")
+                .foregroundColor(Color(goal.goalColor))
+        } else if item.priority == 1 {
+            return Image(systemName: "exclamationmark")
                 .foregroundColor(Color(goal.goalColor))
         } else {
             return Image(systemName: "checkmark.circle")
                 .foregroundColor(.clear)
+        }
+    }
+    
+    var label: Text {
+        if item.completed {
+            return Text("\(item.itemTitle), completed.")
+        } else if item.priority == 3 {
+            return Text("\(item.itemTitle), high priority.")
+        } else {
+            return Text(item.itemTitle)
         }
     }
 }

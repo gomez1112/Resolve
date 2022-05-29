@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC256197284314E900191C4D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC256191284314E900191C4D /* Localizable.strings */; };
+		CC256198284314E900191C4D /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = CC256193284314E900191C4D /* Awards.json */; };
+		CC256199284314E900191C4D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CC256195284314E900191C4D /* Localizable.stringsdict */; };
+		CC2561A22843167F00191C4D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC25619C2843167F00191C4D /* Localizable.strings */; };
+		CC2561A32843167F00191C4D /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = CC25619E2843167F00191C4D /* Awards.json */; };
+		CC2561A42843167F00191C4D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CC2561A02843167F00191C4D /* Localizable.stringsdict */; };
+		CC6D38B628438DA200828C6C /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D38B528438DA200828C6C /* ItemListView.swift */; };
+		CC6D38B828438FAD00828C6C /* GoalSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D38B728438FAD00828C6C /* GoalSummaryView.swift */; };
 		CC7C75EE284260D5002028A6 /* Sequence+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75ED284260D5002028A6 /* Sequence+Extension.swift */; };
 		CC7C75F028426841002028A6 /* SelectSomethingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75EF28426841002028A6 /* SelectSomethingView.swift */; };
 		CC7C75F228426A69002028A6 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7C75F128426A69002028A6 /* Bundle+Extension.swift */; };
@@ -34,6 +42,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC256192284314E900191C4D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Localizable.strings; sourceTree = "<group>"; };
+		CC256194284314E900191C4D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = hu; path = Awards.json; sourceTree = "<group>"; };
+		CC256196284314E900191C4D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = hu; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		CC25619D2843167F00191C4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		CC25619F2843167F00191C4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = Awards.json; sourceTree = "<group>"; };
+		CC2561A12843167F00191C4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		CC6D38B528438DA200828C6C /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
+		CC6D38B728438FAD00828C6C /* GoalSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSummaryView.swift; sourceTree = "<group>"; };
 		CC7C75ED284260D5002028A6 /* Sequence+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extension.swift"; sourceTree = "<group>"; };
 		CC7C75EF28426841002028A6 /* SelectSomethingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSomethingView.swift; sourceTree = "<group>"; };
 		CC7C75F128426A69002028A6 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
@@ -75,6 +91,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC256190284314E900191C4D /* hu.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				CC256191284314E900191C4D /* Localizable.strings */,
+				CC256193284314E900191C4D /* Awards.json */,
+				CC256195284314E900191C4D /* Localizable.stringsdict */,
+			);
+			path = hu.lproj;
+			sourceTree = "<group>";
+		};
+		CC25619B2843167F00191C4D /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				CC25619C2843167F00191C4D /* Localizable.strings */,
+				CC25619E2843167F00191C4D /* Awards.json */,
+				CC2561A02843167F00191C4D /* Localizable.stringsdict */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 		CC7C75F928426C2E002028A6 /* Award */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				CC8A74FF2840709B00DA16DC /* GoalHeaderView.swift */,
+				CC6D38B728438FAD00828C6C /* GoalSummaryView.swift */,
 				CC8A7505284073E600DA16DC /* EditGoalView.swift */,
 				CCBF1C8E283B30DA003476B2 /* GoalsView.swift */,
 			);
@@ -97,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				CCA3411D283F0DAD0021BC45 /* EditItemView.swift */,
+				CC6D38B528438DA200828C6C /* ItemListView.swift */,
 				CCA3411F283F106B0021BC45 /* ItemRowView.swift */,
 			);
 			path = ItemView;
@@ -139,6 +177,8 @@
 				CCBF1C86283B2F5A003476B2 /* Resolve.entitlements */,
 				CCBF1C71283B280F003476B2 /* ResolveApp.swift */,
 				CC7C75F328426B05002028A6 /* Awards.json */,
+				CC25619B2843167F00191C4D /* en.lproj */,
+				CC256190284314E900191C4D /* hu.lproj */,
 				CC8C6D2F283C626C00D03D92 /* Extension */,
 				CCBF1C8B283B3081003476B2 /* View */,
 				CCBF1C82283B2A1D003476B2 /* Model */,
@@ -238,6 +278,7 @@
 			knownRegions = (
 				en,
 				Base,
+				hu,
 			);
 			mainGroup = CCBF1C65283B280F003476B2;
 			productRefGroup = CCBF1C6F283B280F003476B2 /* Products */;
@@ -255,8 +296,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8A7502284072D500DA16DC /* Colors.xcassets in Resources */,
+				CC256199284314E900191C4D /* Localizable.stringsdict in Resources */,
 				CC7C75F428426B05002028A6 /* Awards.json in Resources */,
+				CC2561A42843167F00191C4D /* Localizable.stringsdict in Resources */,
+				CC256197284314E900191C4D /* Localizable.strings in Resources */,
+				CC2561A32843167F00191C4D /* Awards.json in Resources */,
 				CCBF1C79283B2810003476B2 /* Preview Assets.xcassets in Resources */,
+				CC2561A22843167F00191C4D /* Localizable.strings in Resources */,
+				CC256198284314E900191C4D /* Awards.json in Resources */,
 				CCBF1C76283B2810003476B2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +319,7 @@
 				CC8C6D31283C627800D03D92 /* Item+Extension.swift in Sources */,
 				CC7C75FB28426C3B002028A6 /* AwardsView.swift in Sources */,
 				CC8A75002840709B00DA16DC /* GoalHeaderView.swift in Sources */,
+				CC6D38B828438FAD00828C6C /* GoalSummaryView.swift in Sources */,
 				CC7C75F228426A69002028A6 /* Bundle+Extension.swift in Sources */,
 				CC8C6D33283C632400D03D92 /* Goal+Extension.swift in Sources */,
 				CC7C75EE284260D5002028A6 /* Sequence+Extension.swift in Sources */,
@@ -283,6 +331,7 @@
 				CCBF1C74283B280F003476B2 /* ContentView.swift in Sources */,
 				CCA34122283F11BF0021BC45 /* Binding+Extension.swift in Sources */,
 				CC8A7506284073E600DA16DC /* EditGoalView.swift in Sources */,
+				CC6D38B628438DA200828C6C /* ItemListView.swift in Sources */,
 				CCBF1C8F283B30DA003476B2 /* GoalsView.swift in Sources */,
 				CCBF1C8D283B308B003476B2 /* HomeView.swift in Sources */,
 				CCBF1C72283B280F003476B2 /* ResolveApp.swift in Sources */,
@@ -291,6 +340,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CC256191284314E900191C4D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC256192284314E900191C4D /* hu */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CC256193284314E900191C4D /* Awards.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC256194284314E900191C4D /* hu */,
+			);
+			name = Awards.json;
+			sourceTree = "<group>";
+		};
+		CC256195284314E900191C4D /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC256196284314E900191C4D /* hu */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		CC25619C2843167F00191C4D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC25619D2843167F00191C4D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CC25619E2843167F00191C4D /* Awards.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC25619F2843167F00191C4D /* en */,
+			);
+			name = Awards.json;
+			sourceTree = "<group>";
+		};
+		CC2561A02843167F00191C4D /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC2561A12843167F00191C4D /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CCBF1C7A283B2810003476B2 /* Debug */ = {

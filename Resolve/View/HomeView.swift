@@ -13,9 +13,14 @@ struct HomeView: View {
     @EnvironmentObject private var dataController: DataController
     @FetchRequest(entity: Goal.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Goal.title, ascending: true)], predicate: NSPredicate(format: "closed = false")) var goals: FetchedResults<Goal>
     private let items: FetchRequest<Item>
+    
+    // Construct a fetch request to show the 10 highest-priority, incomplete items from open projects.
     init() {
         let request: NSFetchRequest<Item> = Item.fetchRequest()
-        request.predicate = NSPredicate(format: "completed = false")
+        let completedPredicate = NSPredicate(format: "completed = false")
+        let openPredicate = NSPredicate(format: "goal.closed = false")
+        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [completedPredicate, openPredicate])
+        request.predicate = compoundPredicate
         request.sortDescriptors = [
             NSSortDescriptor(keyPath: \Item.priority, ascending: false)
         ]
@@ -32,27 +37,15 @@ struct HomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: goalRows) {
                             ForEach(goals) { goal in
-                                VStack(alignment: .leading) {
-                                    Text("\(goal.goalItems.count) items")
-                                        .font(.caption)
-                                        .foregroundColor(.primary)
-                                    Text(goal.goalTitle)
-                                        .font(.title2)
-                                    ProgressView(value: goal.completionAmount)
-                                        .tint(Color(goal.goalColor))
-                                }
-                                .padding()
-                                .background(Color.secondarySystemGroupedBackground)
-                                .cornerRadius(10)
-                                .shadow(color: Color.black.opacity(0.2), radius: 5)
+                                GoalSummaryView(goal: goal)
                             }
                         }
                         .fixedSize(horizontal: false, vertical: true)
                         .padding([.horizontal, .top])
                     }
                     VStack(alignment: .leading) {
-                        list("Up next", for: items.wrappedValue.prefix(3))
-                        list("More to explore", for: items.wrappedValue.dropFirst(3))
+                        ItemListView(title: "Up next", items: items.wrappedValue.prefix(3))
+                        ItemListView(title: "More to explore", items: items.wrappedValue.dropFirst(3))
                     }
                 }
             }
@@ -63,39 +56,7 @@ struct HomeView: View {
     }
     @ViewBuilder
     func list(_ title: String, for items: FetchedResults<Item>.SubSequence) -> some View {
-        if items.isEmpty {
-            EmptyView()
-        } else {
-            Text(title)
-                .font(.headline)
-                .foregroundColor(.secondary)
-                .padding(.top)
-            
-            ForEach(items) { item in
-                NavigationLink(destination: EditItemView(item: item)) {
-                    HStack(spacing: 20) {
-                        Circle()
-                            .stroke(Color(item.goal?.goalColor ?? "Light Blue"), lineWidth: 3)
-                            .frame(width: 44, height: 44)
-                        VStack(alignment: .leading) {
-                            Text(item.itemTitle)
-                                .font(.title2)
-                                .foregroundColor(.primary)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            if !item.itemDetail.isEmpty {
-                                Text(item.itemTitle)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                    .padding()
-                    .background(Color.secondarySystemGroupedBackground)
-                    .cornerRadius(10)
-                    .shadow(color: Color.black.opacity(0.2), radius: 5)
-                }
-            }
-        }
+        
     }
 }
 
