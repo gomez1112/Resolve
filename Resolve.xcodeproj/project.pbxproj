@@ -167,12 +167,12 @@
 			path = en.lproj;
 			sourceTree = "<group>";
 		};
-		CC7C75F928426C2E002028A6 /* Award */ = {
+		CC7C75F928426C2E002028A6 /* AwardView */ = {
 			isa = PBXGroup;
 			children = (
 				CC7C75FA28426C3B002028A6 /* AwardsView.swift */,
 			);
-			path = Award;
+			path = AwardView;
 			sourceTree = "<group>";
 		};
 		CC8A7503284073AE00DA16DC /* GoalView */ = {
@@ -284,7 +284,7 @@
 				CCBF1C73283B280F003476B2 /* ContentView.swift */,
 				CCBF1C8C283B308B003476B2 /* HomeView.swift */,
 				CC7C75EF28426841002028A6 /* SelectSomethingView.swift */,
-				CC7C75F928426C2E002028A6 /* Award */,
+				CC7C75F928426C2E002028A6 /* AwardView */,
 				CC8A7504284073BD00DA16DC /* ItemView */,
 				CC8A7503284073AE00DA16DC /* GoalView */,
 			);
