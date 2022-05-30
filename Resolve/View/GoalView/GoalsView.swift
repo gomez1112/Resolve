@@ -8,38 +8,35 @@
 import SwiftUI
 
 struct GoalsView: View {
-    @State private var sortOrder = Item.SortOrder.optimized
+    @StateObject private var viewModel: ViewModel
     @State private var showingSortOrder = false
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
     static let openTag: String? = "Open"
     static let closedTag: String? = "Closed"
-    let showClosedGoals: Bool
-    let goals: FetchRequest<Goal>
-    init(showClosedGoals: Bool) {
-        self.showClosedGoals = showClosedGoals
-        goals = FetchRequest<Goal>(entity: Goal.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Goal.creationDate, ascending: false)], predicate: NSPredicate(format: "closed = %d", showClosedGoals))
+    
+    init(dataController: DataController, showClosedGoals: Bool) {
+        let viewModel = ViewModel(dataController: dataController, showClosedGoals: showClosedGoals)
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
         NavigationView {
             Group {
-                if goals.wrappedValue.isEmpty {
+                if viewModel.goals.isEmpty {
                     Text("There's nothing here right now.")
                         .foregroundColor(.secondary)
                 } else {
                     goalsList
                 }
             }
-            .navigationTitle(showClosedGoals ? "Closed Goals" : "Open Goals")
+            .navigationTitle(viewModel.showClosedGoals ? "Closed Goals" : "Open Goals")
             .toolbar {
                 addGoalToolbarItem
                 sortOrderToolbarItem
             }
             .confirmationDialog("Sort items", isPresented: $showingSortOrder) {
-                Button("Optimized") { sortOrder = .optimized }
-                Button("Creation Date") { sortOrder = .creationDate }
-                Button("Title") { sortOrder = .title }
+                Button("Optimized") { viewModel.sortOrder = .optimized }
+                Button("Creation Date") { viewModel.sortOrder = .creationDate }
+                Button("Title") { viewModel.sortOrder = .title }
             }
             SelectSomethingView()
         }
@@ -47,18 +44,21 @@ struct GoalsView: View {
     
     var goalsList: some View {
         List {
-            ForEach(goals.wrappedValue) { goal in
+            ForEach(viewModel.goals
+            ) { goal in
                 Section(header: GoalHeaderView(goal: goal)) {
-                    ForEach(goal.goalItems(using: sortOrder)) { item in
+                    ForEach(goal.goalItems(using: viewModel.sortOrder)) { item in
                         ItemRowView(goal: goal, item: item)
                     }
                     .onDelete { offsets in
-                        delete(offsets, from: goal)
+                        viewModel.delete(offsets, from: goal)
                     }
                     
-                    if !showClosedGoals {
+                    if !viewModel.showClosedGoals {
                         Button {
-                            addItem(to: goal)
+                            withAnimation {
+                                viewModel.addItem(to: goal)
+                            }
                         } label: {
                             Label("Add New Item", systemImage: "plus")
                         }
@@ -72,8 +72,12 @@ struct GoalsView: View {
     }
     private var addGoalToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            if !showClosedGoals {
-                Button(action: addGoal) {
+            if !viewModel.showClosedGoals {
+                Button {
+                    withAnimation {
+                        viewModel.addGoal()
+                    }
+                } label: {
                     // In iOS 14.3 VoiceOver has a glitch that reads the label
                     // "Add Project" as "Add" no matter what accessibility label
                     // we give this button when using a label. As a result, when
@@ -98,38 +102,12 @@ struct GoalsView: View {
             }
         }
     }
-    private func addItem(to goal: Goal) {
-        withAnimation {
-            let item = Item(context: managedObjectContext)
-            item.goal = goal
-            item.creationDate = Date()
-            dataController.save()
-        }
-    }
-    
-    private func delete(_ offsets: IndexSet, from goal: Goal) {
-        let allItems = goal.goalItems(using: sortOrder)
-        for offset in offsets {
-            let item = allItems[offset]
-            dataController.delete(item)
-        }
-        dataController.save()
-    }
-    
-    private func addGoal() {
-        withAnimation {
-            let goal = Goal(context: managedObjectContext)
-            goal.closed = false
-            goal.creationDate = Date()
-            dataController.save()
-        }
-    }
 }
 
 struct GoalsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
     static var previews: some View {
-        GoalsView(showClosedGoals: false)
+        GoalsView(dataController: dataController, showClosedGoals: false)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

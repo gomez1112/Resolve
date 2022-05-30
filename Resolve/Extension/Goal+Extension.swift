@@ -22,7 +22,7 @@ extension Goal {
     }
     
     static var example: Goal {
-        let controller = DataController(inMemory: true)
+        let controller = DataController.preview
         let viewContext = controller.container.viewContext
         
         let goal = Goal(context: viewContext)

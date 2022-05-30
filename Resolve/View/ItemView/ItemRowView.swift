@@ -8,47 +8,25 @@
 import SwiftUI
 
 struct ItemRowView: View {
-    @ObservedObject var goal: Goal
+    @StateObject private var viewModel: ViewModel
     @ObservedObject var item: Item
+    
+    init(goal: Goal, item: Item) {
+        let viewModel = ViewModel(goal: goal, item: item)
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.item = item
+    }
     
     var body: some View {
         NavigationLink(destination: EditItemView(item: item)) {
             Label {
-                Text(item.itemTitle)
+                Text(viewModel.title)
             } icon: {
-                icon
+                Image(systemName: viewModel.icon)
+                    .foregroundColor(viewModel.color.map { Color($0)} ?? .clear)
             }
-            .accessibilityLabel(label)
         }
-    }
-    
-    var icon: some View {
-        if item.completed {
-            return Image(systemName: "checkmark.circle")
-                .foregroundColor(Color(goal.goalColor))
-        } else if item.priority == 3 {
-            return Image(systemName: "exclamationmark.3")
-                .foregroundColor(Color(goal.goalColor))
-        } else if item.priority == 2 {
-            return Image(systemName: "exclamationmark.2")
-                .foregroundColor(Color(goal.goalColor))
-        } else if item.priority == 1 {
-            return Image(systemName: "exclamationmark")
-                .foregroundColor(Color(goal.goalColor))
-        } else {
-            return Image(systemName: "checkmark.circle")
-                .foregroundColor(.clear)
-        }
-    }
-    
-    var label: Text {
-        if item.completed {
-            return Text("\(item.itemTitle), completed.")
-        } else if item.priority == 3 {
-            return Text("\(item.itemTitle), high priority.")
-        } else {
-            return Text(item.itemTitle)
-        }
+        .accessibilityLabel(viewModel.label)
     }
 }
 
