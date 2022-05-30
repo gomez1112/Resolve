@@ -10,10 +10,14 @@ import SwiftUI
 
 /// An environment singleton responsible for managing our Core Data stack, including handling saving,
 /// counting fetch requests, tracking awards, and dealing with sample data.
-class DataController: ObservableObject {
+
+final class DataController: ObservableObject {
     /// The lone CloudKit container used to store all our data.
     let container: NSPersistentCloudKitContainer
     
+    /// Initializes a data controller, either in memory (for temporary use such as testing and previewing),
+    /// or on permanent storage (for use in regular app runs.) Defaults to permanent storage.
+    /// - Parameter inMemory: Whether to store this data in temporary memory or not.
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main")
         
@@ -29,7 +33,9 @@ class DataController: ObservableObject {
             }
         }
     }
-    private func createSampleData() throws {
+    /// Creates example projects and items to make manual testing easier.
+    /// - Throws: An NSError sent from calling save() on the NSManagedObjectContext.
+    func createSampleData() throws {
         let viewContext = container.viewContext
         for i in 1...5 {
             let goal = Goal(context: viewContext)
@@ -60,6 +66,8 @@ class DataController: ObservableObject {
         return dataController
     }()
     
+    /// Saves our Core Data context iff there are changes. This silently ignores
+    /// any errors caused by saving, but this should be fine because all our attributes are optional.
     func save() {
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
@@ -80,7 +88,7 @@ class DataController: ObservableObject {
         _ = try? container.viewContext.execute(batchDeleteRequest2)
     }
     
-    private func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+    func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
     

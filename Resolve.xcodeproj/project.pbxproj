@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC2439B62844612A005142ED /* ResolveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2439B52844612A005142ED /* ResolveTests.swift */; };
+		CC2439BD2844628C005142ED /* AssetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2439BC2844628C005142ED /* AssetTests.swift */; };
+		CC2439BF28446409005142ED /* GoalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2439BE28446409005142ED /* GoalTests.swift */; };
+		CC2439C1284466A4005142ED /* AwardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2439C0284466A4005142ED /* AwardTests.swift */; };
 		CC256197284314E900191C4D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC256191284314E900191C4D /* Localizable.strings */; };
 		CC256198284314E900191C4D /* Awards.json in Resources */ = {isa = PBXBuildFile; fileRef = CC256193284314E900191C4D /* Awards.json */; };
 		CC256199284314E900191C4D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = CC256195284314E900191C4D /* Localizable.stringsdict */; };
@@ -41,7 +45,22 @@
 		CCBF1C8F283B30DA003476B2 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF1C8E283B30DA003476B2 /* GoalsView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CC2439B72844612A005142ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCBF1C66283B280F003476B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CCBF1C6D283B280F003476B2;
+			remoteInfo = Resolve;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		CC2439B32844612A005142ED /* ResolveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResolveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC2439B52844612A005142ED /* ResolveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveTests.swift; sourceTree = "<group>"; };
+		CC2439BC2844628C005142ED /* AssetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetTests.swift; sourceTree = "<group>"; };
+		CC2439BE28446409005142ED /* GoalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTests.swift; sourceTree = "<group>"; };
+		CC2439C0284466A4005142ED /* AwardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardTests.swift; sourceTree = "<group>"; };
 		CC256192284314E900191C4D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = Localizable.strings; sourceTree = "<group>"; };
 		CC256194284314E900191C4D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = hu; path = Awards.json; sourceTree = "<group>"; };
 		CC256196284314E900191C4D /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = hu; path = Localizable.stringsdict; sourceTree = "<group>"; };
@@ -73,13 +92,20 @@
 		CCBF1C80283B2864003476B2 /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		CCBF1C84283B2A34003476B2 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		CCBF1C86283B2F5A003476B2 /* Resolve.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Resolve.entitlements; sourceTree = "<group>"; };
-		CCBF1C87283B2F6D003476B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CCBF1C87283B2F6D003476B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCBF1C89283B2F82003476B2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		CCBF1C8C283B308B003476B2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CCBF1C8E283B30DA003476B2 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CC2439B02844612A005142ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CCBF1C6B283B280F003476B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -91,6 +117,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC2439AD28445D27005142ED /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				CC7C75F328426B05002028A6 /* Awards.json */,
+				CC256190284314E900191C4D /* hu.lproj */,
+				CC25619B2843167F00191C4D /* en.lproj */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		CC2439AE28445D56005142ED /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				CCBF1C86283B2F5A003476B2 /* Resolve.entitlements */,
+				CCBF1C7F283B2864003476B2 /* Main.xcdatamodeld */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		CC2439B42844612A005142ED /* ResolveTests */ = {
+			isa = PBXGroup;
+			children = (
+				CC2439B52844612A005142ED /* ResolveTests.swift */,
+				CC2439BC2844628C005142ED /* AssetTests.swift */,
+				CC2439BE28446409005142ED /* GoalTests.swift */,
+				CC2439C0284466A4005142ED /* AwardTests.swift */,
+			);
+			path = ResolveTests;
+			sourceTree = "<group>";
+		};
 		CC256190284314E900191C4D /* hu.lproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBF1C70283B280F003476B2 /* Resolve */,
+				CC2439B42844612A005142ED /* ResolveTests */,
 				CCBF1C6F283B280F003476B2 /* Products */,
 				CCBF1C88283B2F82003476B2 /* Frameworks */,
 			);
@@ -166,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBF1C6E283B280F003476B2 /* Resolve.app */,
+				CC2439B32844612A005142ED /* ResolveTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,11 +232,9 @@
 			isa = PBXGroup;
 			children = (
 				CCBF1C87283B2F6D003476B2 /* Info.plist */,
-				CCBF1C86283B2F5A003476B2 /* Resolve.entitlements */,
 				CCBF1C71283B280F003476B2 /* ResolveApp.swift */,
-				CC7C75F328426B05002028A6 /* Awards.json */,
-				CC25619B2843167F00191C4D /* en.lproj */,
-				CC256190284314E900191C4D /* hu.lproj */,
+				CC2439AE28445D56005142ED /* Configuration */,
+				CC2439AD28445D27005142ED /* Localization */,
 				CC8C6D2F283C626C00D03D92 /* Extension */,
 				CCBF1C8B283B3081003476B2 /* View */,
 				CCBF1C82283B2A1D003476B2 /* Model */,
@@ -209,7 +265,6 @@
 		CCBF1C83283B2A23003476B2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CCBF1C7F283B2864003476B2 /* Main.xcdatamodeld */,
 				CCBF1C84283B2A34003476B2 /* DataController.swift */,
 			);
 			path = CoreData;
@@ -228,10 +283,10 @@
 			children = (
 				CCBF1C73283B280F003476B2 /* ContentView.swift */,
 				CCBF1C8C283B308B003476B2 /* HomeView.swift */,
+				CC7C75EF28426841002028A6 /* SelectSomethingView.swift */,
 				CC7C75F928426C2E002028A6 /* Award */,
 				CC8A7504284073BD00DA16DC /* ItemView */,
 				CC8A7503284073AE00DA16DC /* GoalView */,
-				CC7C75EF28426841002028A6 /* SelectSomethingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -239,6 +294,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CC2439B22844612A005142ED /* ResolveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC2439B92844612A005142ED /* Build configuration list for PBXNativeTarget "ResolveTests" */;
+			buildPhases = (
+				CC2439AF2844612A005142ED /* Sources */,
+				CC2439B02844612A005142ED /* Frameworks */,
+				CC2439B12844612A005142ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC2439B82844612A005142ED /* PBXTargetDependency */,
+			);
+			name = ResolveTests;
+			productName = ResolveTests;
+			productReference = CC2439B32844612A005142ED /* ResolveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CCBF1C6D283B280F003476B2 /* Resolve */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CCBF1C7C283B2810003476B2 /* Build configuration list for PBXNativeTarget "Resolve" */;
@@ -266,6 +339,10 @@
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
+					CC2439B22844612A005142ED = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = CCBF1C6D283B280F003476B2;
+					};
 					CCBF1C6D283B280F003476B2 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -286,11 +363,19 @@
 			projectRoot = "";
 			targets = (
 				CCBF1C6D283B280F003476B2 /* Resolve */,
+				CC2439B22844612A005142ED /* ResolveTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CC2439B12844612A005142ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CCBF1C6C283B280F003476B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +396,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CC2439AF2844612A005142ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC2439BD2844628C005142ED /* AssetTests.swift in Sources */,
+				CC2439C1284466A4005142ED /* AwardTests.swift in Sources */,
+				CC2439BF28446409005142ED /* GoalTests.swift in Sources */,
+				CC2439B62844612A005142ED /* ResolveTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CCBF1C6A283B280F003476B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -340,6 +436,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CC2439B82844612A005142ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CCBF1C6D283B280F003476B2 /* Resolve */;
+			targetProxy = CC2439B72844612A005142ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CC256191284314E900191C4D /* Localizable.strings */ = {
@@ -393,6 +497,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CC2439BA2844612A005142ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88QL9VPLMY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.transfinite.ResolveTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Resolve.app/Resolve";
+			};
+			name = Debug;
+		};
+		CC2439BB2844612A005142ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 88QL9VPLMY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.transfinite.ResolveTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Resolve.app/Resolve";
+			};
+			name = Release;
+		};
 		CCBF1C7A283B2810003476B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -512,7 +652,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Resolve/Resolve.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Resolve/Configuration/Resolve.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Resolve/Preview Content\"";
@@ -543,7 +683,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Resolve/Resolve.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Resolve/Configuration/Resolve.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Resolve/Preview Content\"";
@@ -572,6 +712,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CC2439B92844612A005142ED /* Build configuration list for PBXNativeTarget "ResolveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC2439BA2844612A005142ED /* Debug */,
+				CC2439BB2844612A005142ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CCBF1C69283B280F003476B2 /* Build configuration list for PBXProject "Resolve" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
