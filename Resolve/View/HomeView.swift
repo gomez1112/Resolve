@@ -5,6 +5,7 @@
 //  Created by Gerard Gomez on 5/22/22.
 //
 
+import CoreSpotlight
 import SwiftUI
 import CoreData
 
@@ -35,15 +36,29 @@ struct HomeView: View {
                         .padding([.horizontal, .top])
                     }
                     VStack(alignment: .leading) {
-                        ItemListView(title: "Up next", items: viewModel.upNext)
-                        ItemListView(title: "More to explore", items: viewModel.moreToExplore)
+                        ItemListView(title: "Up next", items: $viewModel.upNext)
+                        ItemListView(title: "More to explore", items: $viewModel.moreToExplore)
                     }
                 }
                 Button("Add Data", action: viewModel.addSampleData)
+                if let item = viewModel.selectedItem {
+                    NavigationLink(
+                        destination: EditItemView(item: item),
+                        tag: item,
+                        selection: $viewModel.selectedItem,
+                        label: EmptyView.init).id(item)
+                }
             }
             .padding(.horizontal)
             .background(Color.systemGroupedBackground.ignoresSafeArea())
+            .onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
             .navigationTitle("Home")
+        }
+    }
+    
+    func loadSpotlightItem(_ userActivity: NSUserActivity) {
+        if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            viewModel.selectItem(with: uniqueIdentifier)
         }
     }
 }

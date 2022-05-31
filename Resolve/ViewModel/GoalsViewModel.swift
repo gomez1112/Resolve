@@ -14,6 +14,7 @@ extension GoalsView {
         let dataController: DataController
         @Published var sortOrder = Item.SortOrder.optimized
         let showClosedGoals: Bool
+        @Published var showingUnlockView = false
         
         private let goalsController: NSFetchedResultsController<Goal>
         @Published var goals = [Goal]()
@@ -45,16 +46,24 @@ extension GoalsView {
             }
         }
         func addGoal() {
-            let goal = Goal(context: dataController.container.viewContext)
-            goal.closed = false
-            goal.creationDate = Date()
-            dataController.save()
+            let canCreate = dataController.fullVersionUnlocked || dataController.count(for: Goal.fetchRequest()) < 3
+            if canCreate {
+                let goal = Goal(context: dataController.container.viewContext)
+                goal.closed = false
+                goal.creationDate = Date()
+                dataController.save()
+            } else {
+                showingUnlockView.toggle()
+            }
         }
         
         func addItem(to goal: Goal) {
+            
             let item = Item(context: dataController.container.viewContext)
             item.goal = goal
             item.creationDate = Date()
+            item.priority = 2
+            item.completed = false
             dataController.save()
             
         }

@@ -5,8 +5,10 @@
 //  Created by Gerard Gomez on 5/22/22.
 //
 
+import StoreKit
+import CoreSpotlight
 import CoreData
-import SwiftUI
+import UserNotifications
 
 /// An environment singleton responsible for managing our Core Data stack, including handling saving,
 /// counting fetch requests, tracking awards, and dealing with sample data.
@@ -15,10 +17,14 @@ final class DataController: ObservableObject {
     /// The lone CloudKit container used to store all our data.
     let container: NSPersistentCloudKitContainer
     
+    // The UserDefaults suite where we're saving user data
+    let defaults: UserDefaults
+    
     /// Initializes a data controller, either in memory (for temporary use such as testing and previewing),
     /// or on permanent storage (for use in regular app runs.) Defaults to permanent storage.
     /// - Parameter inMemory: Whether to store this data in temporary memory or not.
-    init(inMemory: Bool = false) {
+    init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
+        self.defaults = defaults
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
         
         // For testing and previewing purposes, we create a
@@ -85,6 +91,12 @@ final class DataController: ObservableObject {
     }
     
     func delete(_ object: NSManagedObject) {
+        let id = object.objectID.uriRepresentation().absoluteString
+        if object is Item {
+            CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [id])
+        } else {
+            CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [id])
+        }
         container.viewContext.delete(object)
     }
     
@@ -119,6 +131,124 @@ final class DataController: ObservableObject {
             default:
                 // an unknown award criterion; this should never be allowed
                 return false
+        }
+    }
+    
+    // Spotlight
+    
+    func update(_ item: Item) {
+        let itemID = item.objectID.uriRepresentation().absoluteString
+        let goalID = item.goal?.objectID.uriRepresentation().absoluteString
+        
+        let attributeSet = CSSearchableItemAttributeSet(contentType: .text)
+        attributeSet.title = item.title
+        attributeSet.contentDescription = item.detail
+        
+        let searchableItem = CSSearchableItem(uniqueIdentifier: itemID, domainIdentifier: goalID, attributeSet: attributeSet)
+        CSSearchableIndex.default().indexSearchableItems([searchableItem])
+        save()
+    }
+    
+    func item(with uniqueIdentifier: String) -> Item? {
+        guard let url = URL(string: uniqueIdentifier) else { return nil }
+        guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else { return nil }
+        return try? container.viewContext.existingObject(with: id) as? Item
+    }
+    
+    // Notifications
+    
+    func addReminders(for goal: Goal) async throws -> Bool {
+        let center = UNUserNotificationCenter.current()
+        
+        let settings = await center.notificationSettings()
+        switch settings.authorizationStatus {
+            case .notDetermined:
+                let success = try await self.requestNotifications()
+                if success {
+                    return await self.placeReminders(for: goal)
+                } else {
+                    return await withCheckedContinuation { continuation in
+                        DispatchQueue.main.async {
+                            continuation.resume(returning: false)
+                        }
+                    }
+                }
+            case .authorized:
+                return await self.placeReminders(for: goal)
+            default:
+                return await withCheckedContinuation { continuation in
+                    DispatchQueue.main.async {
+                        continuation.resume(returning: false)
+                    }
+                }
+        }
+    }
+    
+    func removeReminders(for goal: Goal) {
+        let center = UNUserNotificationCenter.current()
+        
+        let id = goal.objectID.uriRepresentation().absoluteString
+        center.removePendingNotificationRequests(withIdentifiers: [id])
+    }
+    
+    private func requestNotifications() async throws -> Bool {
+        let center = UNUserNotificationCenter.current()
+        
+        let granted = try await center.requestAuthorization(options: [.alert, .sound])
+        return granted
+        
+    }
+    
+    private func placeReminders(for goal: Goal) async -> Bool {
+        let content = UNMutableNotificationContent()
+        
+        content.sound = .default
+        content.title = goal.goalTitle
+        
+        if let goalDetail = goal.detail {
+            content.subtitle = goalDetail
+        }
+        
+        let components = Calendar.current.dateComponents([.hour, .minute], from: goal.reminderTime ?? Date())
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+        
+        let id = goal.objectID.uriRepresentation().absoluteString
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        
+        return await withCheckedContinuation { continuation in
+            UNUserNotificationCenter.current().add(request) { error in
+                DispatchQueue.main.async {
+                    if error == nil {
+                        continuation.resume(returning: true)
+                    } else {
+                        continuation.resume(returning: false)
+                    }
+                }
+            }
+        }
+    }
+    
+    // StoreKit
+   
+    
+    // Loads and saves whether our premium unlock has been purchased.
+    
+    var fullVersionUnlocked: Bool {
+        get {
+            defaults.bool(forKey: "fullVersionUnlocked")
+        }
+        set {
+            defaults.set(newValue, forKey: "fullVersionUnlocked")
+        }
+    }
+    
+    func appLaunched() {
+        guard count(for: Goal.fetchRequest()) >= 5 else { return }
+        let allScenes = UIApplication.shared.connectedScenes
+        let scene = allScenes.first { $0.activationState == .foregroundActive }
+        
+        if let windowScene = scene as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: windowScene)
         }
     }
 }

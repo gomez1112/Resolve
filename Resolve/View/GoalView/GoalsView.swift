@@ -40,6 +40,9 @@ struct GoalsView: View {
             }
             SelectSomethingView()
         }
+        .sheet(isPresented: $viewModel.showingUnlockView) {
+            UnlockView()
+        }
     }
     
     var goalsList: some View {
