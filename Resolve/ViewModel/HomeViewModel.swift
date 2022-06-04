@@ -55,13 +55,11 @@ extension HomeView {
         }
         
         func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-            if let newItems = controller.fetchedObjects as? [Item] {
-                items = newItems
-                upNext = items.prefix(3)
-                moreToExplore = items.dropFirst(3)
-            } else if let newGoals = controller.fetchedObjects as? [Goal] {
-                goals = newGoals
-            }
+            items = itemsController.fetchedObjects ?? []
+            
+            upNext = items.prefix(3)
+            moreToExplore = items.dropFirst(3)
+            goals = goalsController.fetchedObjects ?? []
         }
         
         func addSampleData() {
