@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Bundle { func load<T: Decodable>(_ filename: String,
+extension Bundle { func load<T: Decodable>(_ filename: String, _ type: T.Type = T.self,
                             dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
                             keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) -> T {
         let data: Data

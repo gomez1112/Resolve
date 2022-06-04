@@ -46,13 +46,7 @@ extension GoalsView {
             }
         }
         func addGoal() {
-            let canCreate = dataController.fullVersionUnlocked || dataController.count(for: Goal.fetchRequest()) < 3
-            if canCreate {
-                let goal = Goal(context: dataController.container.viewContext)
-                goal.closed = false
-                goal.creationDate = Date()
-                dataController.save()
-            } else {
+            if !dataController.addGoal() {
                 showingUnlockView.toggle()
             }
         }

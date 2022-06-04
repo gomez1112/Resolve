@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @SceneStorage("selectedView") private var selectedView: String?
     @EnvironmentObject private var dataController: DataController
+    private let newGoalActivity = "com.transfinite.Resolve.newGoal"
     var body: some View {
         TabView(selection: $selectedView) {
             HomeView(dataController: dataController)
@@ -38,10 +39,25 @@ struct ContentView: View {
                 }
         }
         .onContinueUserActivity(CSSearchableItemActionType, perform: moveToHome)
+        .onContinueUserActivity(newGoalActivity, perform: createGoal)
+        .userActivity(newGoalActivity) { activity in
+            activity.isEligibleForPrediction = true
+            activity.title = "New Goal"
+        }
+        .onOpenURL(perform: openURL)
     }
     
     func moveToHome(_ input: Any) {
         selectedView = HomeView.tag
+    }
+    func openURL(_ url: URL) {
+        selectedView = GoalsView.openTag
+        _ = dataController.addGoal()
+    }
+    
+    func createGoal(_ userActivity: NSUserActivity) {
+        selectedView = GoalsView.openTag
+        dataController.addGoal()
     }
 }
 

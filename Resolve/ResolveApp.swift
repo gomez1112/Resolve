@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct ResolveApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var dataController: DataController
     @StateObject private var unlockManager: UnlockManager
     init() {

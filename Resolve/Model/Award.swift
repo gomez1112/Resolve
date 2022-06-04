@@ -16,6 +16,6 @@ struct Award: Codable, Identifiable {
     let value: Int
     let image: String
     
-    static let allAwards: [Award] = Bundle.main.load("Awards.json")
+    static let allAwards: [Self] = Bundle.main.load("Awards.json")
     static let example = allAwards[5]
 }
